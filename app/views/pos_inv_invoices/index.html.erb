@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pos Inv Invoices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invoice num</th>
+      <th>Gatepass number</th>
+      <th>Billing date</th>
+      <th>Delivery date</th>
+      <th>Rate of transporter</th>
+      <th>Customer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pos_inv_invoices.each do |pos_inv_invoice| %>
+      <tr>
+        <td><%= pos_inv_invoice.invoice_num %></td>
+        <td><%= pos_inv_invoice.gatepass_number %></td>
+        <td><%= pos_inv_invoice.billing_date %></td>
+        <td><%= pos_inv_invoice.delivery_date %></td>
+        <td><%= pos_inv_invoice.rate_of_transporter %></td>
+        <td><%= pos_inv_invoice.customer %></td>
+        <td><%= link_to 'Show', pos_inv_invoice %></td>
+        <td><%= link_to 'Edit', edit_pos_inv_invoice_path(pos_inv_invoice) %></td>
+        <td><%= link_to 'Destroy', pos_inv_invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pos Inv Invoice', new_pos_inv_invoice_path %>

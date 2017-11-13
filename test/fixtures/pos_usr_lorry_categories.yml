@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  city_charge: 1.5
+  milage_charge: 1.5
+  fridge_capacity: 1
+
+two:
+  category: MyString
+  city_charge: 1.5
+  milage_charge: 1.5
+  fridge_capacity: 1

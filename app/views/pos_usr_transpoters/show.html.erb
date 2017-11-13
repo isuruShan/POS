@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pos_usr_transpoter.name %>
+</p>
+
+<p>
+  <strong>Owner name:</strong>
+  <%= @pos_usr_transpoter.owner_name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @pos_usr_transpoter.address %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @pos_usr_transpoter.email %>
+</p>
+
+<p>
+  <strong>Vat reg num:</strong>
+  <%= @pos_usr_transpoter.vat_reg_num %>
+</p>
+
+<%= link_to 'Edit', edit_pos_usr_transpoter_path(@pos_usr_transpoter) %> |
+<%= link_to 'Back', pos_usr_transpoters_path %>

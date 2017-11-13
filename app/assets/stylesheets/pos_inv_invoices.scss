@@ -1,0 +1,111 @@
+// Place all the styles related to the pos_inv_invoices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.t-head{
+  font-weight: bold;
+}
+#t-head-hr{
+  border-width: 1px;
+  border-color: #d5d1d1;
+}
+.addNew{
+  width: 40px;
+  height: 40px;
+  border: 2px dashed;
+  border-color: #1E90FF;
+}
+.addNew:hover{
+  background-color: transparent !important;
+  border-color: #00BFFF;
+  cursor:pointer
+}
+.contact-details{
+  font-size: 8px;
+  font-style: italic;
+  margin: 0 0 -5px 0 ;
+}
+#transporter{
+  margin-bottom: -2px;
+  font-weight: bold;
+  font-size: 15px;
+}
+.invoice-details{
+  font-size: 9px;
+  font-style: italic;
+  margin-bottom:-3px ;
+}
+.print-invoice-num{
+  margin-bottom: -10px;
+  margin-top: -13px;
+}
+#preview-header{
+  font-size:20px;
+  padding-left: 52px;
+  padding-right: 51px;
+}
+.row-title{
+  font-size: 10px;
+  font-weight: bold;
+  padding-left:200px;
+}
+
+//switch inputs
+
+.switch {
+   position: relative;
+   display: inline-block;
+   width: 60px;
+   height: 34px;
+ }
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: green;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.destination-list{
+  padding-left: 10px;
+}

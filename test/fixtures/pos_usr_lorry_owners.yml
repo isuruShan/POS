@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  nic: 1
+  account_number: 1
+  phone: MyString
+  image: MyString
+  pos_usr_lorry: one
+
+two:
+  name: MyString
+  nic: 1
+  account_number: 1
+  phone: MyString
+  image: MyString
+  pos_usr_lorry: two

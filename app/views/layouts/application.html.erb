@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>POS</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'http://code.jquery.com/ui/1.11.0/jquery-ui.js' %>
+    <%= stylesheet_link_tag    'http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css'%>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'%>
+  </head>
+
+  <% if request.fullpath == "/pos_usr_users/sign_in" %>
+    <body style="background-image: url(/assets/login_background.jpg); no-repeat center center fixed;background-size: cover;font-size: 16px;font-family: 'Lato', sans-serif;font-weight: 300;margin: 0;color: #666; ">
+  <%- else %>
+    <body style="background:#f3f3f3 ">
+    <div>
+      <%= render 'layouts/header' %>
+    </div>
+    <div>
+      <%= render 'layouts/header_top' %>
+    </div>
+  <% end %>
+  <section>
+    <div class="alerts">
+      <div class="alert alert-success hidden" role="alert" >
+        <a href="#" class="alert-link">...</a>
+      </div>
+      <div class="alert alert-info hidden" role="alert">
+        <a href="#" class="alert-link">...</a>
+      </div>
+      <div class="alert alert-warning hidden" role="alert">
+        <a href="#" class="alert-link">...</a>
+      </div>
+      <div class="alert alert-danger hidden" role="alert">
+        <a href="#" class="alert-link">...</a>
+      </div>
+    </div>
+
+    <%= yield %>
+  </section>
+
+
+  </body>
+</html>

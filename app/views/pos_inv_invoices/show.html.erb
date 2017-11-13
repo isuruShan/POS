@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Invoice num:</strong>
+  <%= @pos_inv_invoice.invoice_num %>
+</p>
+
+<p>
+  <strong>Gatepass number:</strong>
+  <%= @pos_inv_invoice.gatepass_number %>
+</p>
+
+<p>
+  <strong>Billing date:</strong>
+  <%= @pos_inv_invoice.billing_date %>
+</p>
+
+<p>
+  <strong>Delivery date:</strong>
+  <%= @pos_inv_invoice.delivery_date %>
+</p>
+
+<p>
+  <strong>Rate of transporter:</strong>
+  <%= @pos_inv_invoice.rate_of_transporter %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @pos_inv_invoice.customer %>
+</p>
+
+<%= link_to 'Edit', edit_pos_inv_invoice_path(@pos_inv_invoice) %> |
+<%= link_to 'Back', pos_inv_invoices_path %>

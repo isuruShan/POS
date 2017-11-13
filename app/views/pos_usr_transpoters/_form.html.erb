@@ -1,0 +1,47 @@
+<%= form_for(pos_usr_transpoter) do |f| %>
+  <% if pos_usr_transpoter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pos_usr_transpoter.errors.count, "error") %> prohibited this pos_usr_transpoter from being saved:</h2>
+
+      <ul>
+      <% pos_usr_transpoter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :owner_name %>
+    <%= f.text_field :owner_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vat_reg_num %>
+    <%= f.number_field :vat_reg_num %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pos_usr_user_id %>
+    <%= f.collection_select :pos_usr_user_id , PosUsrUser.order(:email), :id, :email, include_blank: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

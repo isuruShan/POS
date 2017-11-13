@@ -1,0 +1,24 @@
+<nav class="side-nav-nav">
+  <ul class="list-body list-items">
+    <%- if controller_name == 'pos_usr_transpoters' || controller_name == 'pos_usr_lorries' %>
+        <a href="<%= root_path%>"><li class="side-nav-list " style="background: rgb(75, 75, 75);"><%= image_tag 'home.png', width:"40", height:"40" %></li></a>
+    <% else %>
+        <a href="<%= root_path%>"><li class="side-nav-list "><%= image_tag 'home.png', width:"40", height:"40" %></li></a>
+    <% end %>
+    <%- if controller_name == 'pos_inv_invoices' %>
+        <a href="<%= pos_inv_invoices_path %>"><li class="side-nav-list " style="background: rgb(75, 75, 75);"><%= image_tag 'invoice.png', width:"40", height:"40" %></li></a>
+    <% else %>
+        <a href="<%= pos_inv_invoices_path %>"><li class="side-nav-list "><%= image_tag 'invoice.png', width:"40", height:"40" %></li></a>
+    <% end %>
+    <li class="side-nav-list "><%= image_tag 'report.png', width:"40", height:"40" %></li>
+    <li class="side-nav-list "><%= image_tag 'notification.png', width:"40", height:"40" %></i></li>
+    <li class="side-nav-list "><i class="fa fa-home side-nav" aria-hidden="true"></i></li>
+  </ul>
+</nav>
+
+<style>
+  .side-nav{
+    font-size: 40px;
+  }
+</style>
+

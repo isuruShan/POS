@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="top">
+    <h1 id="title"><span id="logo">Transport Management Sytem<span>UI</span></span></h1>
+  </div>
+  <div class="login-box animated fadeInUp">
+    <div class="box-header">
+      <h2 class="heading">Log In</h2>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <label for="username">Username</label>
+        <br/>
+        <%= f.email_field :email, autofocus: true, id:'username'%>
+        <br/>
+        <label for="password">Password</label>
+        <br/>
+        <%= f.password_field :password, autocomplete: "off", id:'password'%>
+        <br/>
+        <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+        <% end -%>
+        <%= f.submit "Log in" %>
+        <br/>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#logo').addClass('animated fadeInDown');
+        $("input:text:visible:first").focus();
+    });
+    $('#username').focus(function() {
+        $('label[for="username"]').addClass('selected');
+    });
+    $('#username').blur(function() {
+        $('label[for="username"]').removeClass('selected');
+    });
+    $('#password').focus(function() {
+        $('label[for="password"]').addClass('selected');
+    });
+    $('#password').blur(function() {
+        $('label[for="password"]').removeClass('selected');
+    });
+</script>
+
+
+

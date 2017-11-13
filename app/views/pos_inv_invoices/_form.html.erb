@@ -1,0 +1,274 @@
+
+<div class="col-lg-7">
+  <div class="preview" style="">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h2>Create Invoice</h2></div>
+      <div class="panel-body">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-4 text-left"></div>
+        <div class="col-lg-7"></div>
+        <div class="col-lg-12">
+          <%= form_for(pos_inv_invoice) do |f| %>
+              <% if pos_inv_invoice.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(pos_inv_invoice.errors.count, "error") %> prohibited this pos_inv_invoice from being saved:</h2>
+
+                    <ul>
+                      <% pos_inv_invoice.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="email">Invoice Number:</label>
+                  <%= f.text_field :invoice_num, class:"form-control", id:"invoice", style:"width:300px" %>
+                </div>
+                <div class="form-group">
+                  <label for="email">Billing Date:</label><br>
+                  <div style="display: inline-flex">
+                    <%= f.text_field :billing_date, class:"form-control", id:"datepicker1", style:"width:150px", placeholder:"10/02/2017" %><i class="fa fa-calendar" aria-hidden="true" id="cal1" style="font-size: 32px"></i>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Customer:</label>
+                  <%= f.text_field :customer, class:"form-control", style:"width:300px"%>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="email">Gatepass Number:</label>
+                  <%= f.text_field :gatepass_number, class:"form-control", style:"width:300px", placeholder:"18050 ", id:"gatepass-select" %>
+                </div>
+                <div class="form-group">
+                  <label for="email">Delivery Date:</label><br>
+                  <div style="display: inline-flex">
+                    <%= f.text_field :delivery_date, class:"form-control", id:"datepicker2", style:"width:150px", placeholder:"10/02/2017" %><i class="fa fa-calendar" id="cal2" aria-hidden="true" style="font-size: 32px"></i>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Lorry Number:</label><br>
+                  <select class="form-control" style="width:150px" id="lorry-select">
+                    <% @pos_usr_lorry.each do |lorry| %>
+                      <option><%= lorry.number %></option>
+                    <% end %>
+                  </select>
+                </div>
+                <div class="form-group hidden">
+                  <label for="email">Lorry Number:</label>
+                    <%= f.text_field :pos_usr_lorry_id, class:"form-control hidden", placeholder:"10/02/2017", style:"width:150px", id:"select-lorry" %>
+                </div>
+              </div>
+              <div class="col-lg-12">
+
+                <div class="col-lg-10" style="margin-top:20px">
+                  <thead>
+                  <tr class="headings">
+                    <th class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-3 col-sm-2 text-left t-head">Description</div>
+                        <div class="col-lg-2 visible-lg-block text-left t-head">Base Amount</div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 text-left t-head">Tax(db)</div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 text-left t-head">Amount Include Tax</div>
+                      </div>
+                    </th>
+                  </tr>
+                  </thead>
+                  <hr id="t-head-hr">
+                  <tbody>
+                  <tr>
+                    <td colspan="9" style="padding:0px">
+                      <div class="scroll-container">
+                        <div class="row">
+                          <div class="col-lg-6 col-md-3 col-sm-2 text-left"><input id="destinations" placeholder="Add multiple destinations comma separatedly "></div>
+                          <div class="col-lg-2 visible-lg-block text-left"><input id="base-amount" class="form-control"></div>
+                          <div class="col-lg-2 col-md-3 col-sm-3 text-left"><input id="tax" class="form-control" style="border-width:0;background-color:rgb(243,243,243)"></div>
+                          <div class="col-lg-2 col-md-3 col-sm-3 text-left"><%= f.text_field :amount, class:"form-control", style:"border-width:0;background-color:rgb(243,243,243)", id:"amount"%></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6 col-md-3 col-sm-2 text-left">
+                            <p style="margin: 10px 0 20px 2px"><b>Extras</b></p>
+                          </div>
+                          <div class="col-lg-6 visible-lg-block text-left"></div>
+
+                        </div>
+                        <%= f.fields_for :pos_inv_extra_charges do |extra| %>
+                            <%= render 'pos_inv_extra_charge_fields', f: extra  %>
+                        <% end %>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <center><%= link_to_add_association '+', f, :pos_inv_extra_charges, class: 'btn hidden', id:"add-extra", data: { association_insertion_node: '.scroll-container', association_insertion_method: :append } %></center>
+                      <center><%= image_tag 'Plus.png',class:"addNew" ,id:"add-billing-addr-click", onclick:"AddExtra()", style:"margin-top:20px" %></button></center>
+                    </div>
+                    <div class="col-sm-3">
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-lg-2"></div>
+
+                <div class="col-lg-10">
+                  <div class="actions">
+                    <%= f.submit "Create Invoice",class:"btn btn-success", style:"margin-top:30px;float:right" %>
+                  </div>
+                </div>
+                <div class="col-lg-2"></div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="col-lg-5 text-left">
+  <div class="preview" style="">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Invoice Preview</div>
+      <div class="panel-body">
+        <%= render 'invoice_preview' %>
+        </div>
+    </div>
+  </div>
+
+  <div class="panel panel-primary" style="width: 300px; float: right">
+    <div class="panel-heading">Totals</div>
+    <table class="table">
+      <tbody><tr class="resume_total">
+        <td class="text-right">Sub Total</td>
+        <th class="text-right" id="div_total">Rs. 0.00</th>
+      </tr>
+      <tr class="resume_total_discount">
+        <td class="text-right">Tax(15%)</td>
+        <th class="text-right" id="div_total_discount">Rs. 0.00</th>
+        <td><input id="input_total_discount" name="input_total_discount" value="0.00" type="hidden"></td>
+      </tr>
+      <tr class="resume_total_discount">
+        <td class="text-right" style="font-size: 20px">Total Amount</td>
+        <th class="text-right" id="div_total_discount">Rs. 0.00</th>
+        <td><input id="input_total_discount" name="input_total_discount" value="0.00" type="hidden"></td>
+      </tr>
+
+      </th>
+      </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <tbody><tr class="resume_total">
+        <td>
+          <label class="switch">
+            <input type="checkbox" id="tax_check" onclick="ActivateTax()">
+            <span class="slider round"></span>
+          </label>
+        </td>
+        <td>
+          <div class="row" style="display: inline-flex;margin-top: -10px">
+            <%= f.text_field :tax_percentage, id:"tax-percentage", class:"form-control", style:"width:100px" %><span style="font-size: 20px">%</span>
+          </div>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+
+</div>
+
+
+
+
+<script>
+    $(document).ready( function() {
+        $( "#datepicker1" ).datepicker();
+        $( "#datepicker2" ).datepicker();
+        $("#pos_inv_invoice_customer").val("Singer Srilanka")
+        $("#cal1").click(function () {
+            document.getElementById("datepicker1").focus()
+        })
+        $("#cal2").click(function () {
+            document.getElementById("datepicker2").focus()
+        })
+        $("#destinations ").focusout(function () {
+            document.getElementById("destinations").style.borderWidth = 0
+            document.getElementById("destinations").style.borderColor = "rgb(243,243,243)"
+            document.getElementById("destinations").style.backgroundColor = "rgb(243,243,243)"
+        });
+        $("#destinations").click(function () {
+            document.getElementById("destinations").style.borderWidth = 1
+            document.getElementById("destinations").style.backgroundColor = "rgb(255,255,255)"
+        });
+        $("#base-amount ").focusout(function () {
+            document.getElementById("base-amount").style.borderWidth = 0
+            document.getElementById("base-amount").style.borderColor = "rgb(243,243,243)"
+            document.getElementById("base-amount").style.backgroundColor = "rgb(243,243,243)"
+        });
+        $("#base-amount").click(function () {
+            document.getElementById("base-amount").style.borderWidth = 1
+            document.getElementById("base-amount").style.backgroundColor = "rgb(255,255,255)"
+        });
+    } );
+    function AddExtra(){
+        document.getElementById('add-extra').click();
+    }
+    $(document).ready(function () {
+        $('#destinations').tokenfield();
+        ActivateTax()
+        $('#destinations-tokenfield').focusin(function () {
+            $('#destinations-tokenfield').removeAttr('placeholder')
+        })
+    })
+
+
+    function ActivateTax(){
+        if($('#tax_check').is(":checked")){
+            $('#tax-percentage').removeAttr('disabled')
+        }
+        else {
+            $('#tax-percentage').attr("disabled", "disabled")
+        }
+    }
+    $(document).ready(function () {
+        $('#lorry-select').change(function () {
+            $('#select-lorry').val($('#lorry-select').val())
+        })
+    })
+    $(document).ready(function () {
+        $('#invoice').val(<%= @pos_inv_invoice_number %>)
+        $('#datepicker1').val(moment().format('MM/DD/YYYY'))
+        $('#billing-date').html('<b>Date: </b>' +moment().format('MM/DD/YYYY'))
+        $('#datepicker2').val(moment().add(7, 'days').format('MM/DD/YYYY'))
+        $('#delivery-date').html('<b>Dry Date: </b>' +moment().add(7, 'days').format('MM/DD/YYYY'))
+        $('#number-lorry').html('<b>Lorry Number: </b>' + $('#lorry-select').val())
+        GetLorryCategory( $('#lorry-select').val())
+
+    })
+
+    $('#amount').attr('readonly','true');
+    $('#tax').attr('readonly','true');
+
+    $('#base-amount').change(function () {
+        $('#tax').val($('#base-amount').val()*$('#tax-percentage').val()/100)
+        $('#amount').val(parseFloat($('#base-amount').val()) + parseFloat($('#tax').val()))
+        $('#amount-base').html($('#amount').val());
+    });
+
+//    The tax percentage changes
+    $('#tax-percentage').change(function () {
+        $('#tax').val($('#base-amount').val()*$('#tax-percentage').val()/100)
+        $('#amount').val(parseFloat($('#base-amount').val()) + parseFloat($('#tax').val()))
+        $('#amount-base').html($('#amount').val());
+        $('#vat-label').html('Vat('+$('#tax-percentage').val()+')')
+    });
+
+
+
+
+
+</script>

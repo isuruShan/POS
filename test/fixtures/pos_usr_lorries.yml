@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reg_number: 1
+  number: MyString
+  image: MyString
+  pos_usr_transpoter: one
+
+two:
+  reg_number: 1
+  number: MyString
+  image: MyString
+  pos_usr_transpoter: two

@@ -1,0 +1,104 @@
+<div>
+  <table width="100%">
+    <tr>
+      <td><p id="transporter"><%= @pos_usr_transpoter.name %></td>
+      <td rowspan="6" class="text-center"><center><p id="preview-header">Tax Invoice</p></center></td>
+      <td rowspan="2" ><p class="print-invoice-num"><b>Invoice No: <%= @pos_inv_invoice_number %></b></p></td>
+    </tr>
+    <tr>
+      <td><p class="contact-details"><b><%= @pos_usr_transpoter.address %></b></p></td>
+    </tr>
+    <tr>
+      <td><p class="contact-details"><b>Tel: </b>0772 121243/0713 123242</p></td>
+      <td><p class="invoice-details" id="billing-date"><b>Date: </b></p></td>
+    </tr>
+    <tr>
+      <td><p class="contact-details"><b>Vat Reg No:</b><%= @pos_usr_transpoter.vat_reg_num %></p></td>
+      <td><p class="invoice-details" id="number-lorry"><b>Lorry Num:</b></p></td>
+    </tr>
+    <tr>
+      <td><p class="contact-details"><b>Customer</b> Singer (Srilanka) Ltd</p></td>
+      <td><p class="invoice-details" id="category"><b>Lorry Category:</b></p></td>
+    </tr>
+    <tr>
+      <td><p class="contact-details"><b>12400826/7000</b> 129454348-7000</p></td>
+      <td><p class="invoice-details" id="delivery-date"><b>Dry Date:</b></p></td>
+    </tr>
+  </table>
+
+  <table width="100%" class=".table-bordered" style="margin-top:20px;border: 1px solid black;">
+    <tr>
+      <th width="100"> &nbsp; Gate Pass No</th>
+      <th width = "250"><p style="margin-bottom: 6px">Description</p></th>
+      <th width="50" style="margin-bottom: 6px"> Amount(Rs.)</th>
+    </tr>
+    <tr>
+      <td rowspan="6"><p id="gatepass"></p></td>
+      <td height="40"><div id="des"><p id="destination-list"></p></div></td>
+      <td><p id="amount-base"></p></td>
+    </tr>
+    <tr>
+      <td><b>Extras</b></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><div id="ext"><p id="ext-list"></p></div></td>
+      <td><div id="ext-amout"><p id="ext-amount-list"></p></div></td>
+    </tr>
+    <tr>
+      <td class="row-title" >Sub Total</td>
+      <td class="text-right" style="padding-right:20px">0.00</td>
+    </tr>
+    <tr>
+      <td class="row-title" id="vat-label">Vat(15%)</td>
+      <td class="text-right" style="padding-right:20px">0.00</td>
+    </tr>
+    <tr>
+      <td class="row-title">Full Ammount</td>
+      <td class="text-right" style="padding-right:20px">0.00</td>
+    </tr>
+  </table>
+
+</div>
+<div class="row">
+  <%= link_to "PDF File", new_pos_inv_invoice_path(format:'pdf') %>
+</div>
+
+<script>
+  $('#datepicker1').change(function () {
+      $('#billing-date').html("<b>Date: </b>" + $('#datepicker1').val()   )
+  })
+  $('#datepicker2').change(function () {
+      $('#delivery-date').html("<b>Dry Date: </b>" + $('#datepicker2').val()   )
+  })
+  $('#lorry-select').change(function () {
+      $('#number-lorry').html("<b>Lorry Number: </b>" +  $('#lorry-select').val())
+      GetLorryCategory($('#lorry-select').val());
+  })
+  function GetLorryCategory(lorry_num){
+      $.ajax({
+          type:"GET",
+          url:"category",
+          dataType:"json",
+          data: {lorry_num: lorry_num},
+          success:function(result){
+              $('#category').html("<b>Lorry Category: </b>"+ result )
+          }
+      })
+  }
+  $('#gatepass-select').change(function () {
+      $('#gatepass').html($('#gatepass-select').val())
+  })
+  $('#destinations').change(function () {
+      $('#destination-list').remove()
+      $('#des').append("<p id='destination-list'></p>")
+
+      var destinations = $('#destinations').tokenfield('getTokens');
+      for(var i =0; i< destinations.length; i++){
+          $('#destination-list').append(destinations[i].value + "<br>");
+      }
+  });
+
+
+
+</script>
